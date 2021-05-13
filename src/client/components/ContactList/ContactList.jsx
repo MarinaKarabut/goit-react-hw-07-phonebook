@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {deleteContact} from '../../../redux/contacts-operations'
+import { deleteContact } from '../../../redux/contacts-operations'
+import { getContacts, getFilterContacts} from '../../../redux/selectors'
 import PropTypes from 'prop-types'
 import ContactsListItem from '../ContactListItem'
 
@@ -25,8 +26,8 @@ const getVisibleContacts = (allContacts, filter) => {
   
   };
 
-const mapStateToProps = ({ contacts: { items, filter } }) => ({
-    contacts: getVisibleContacts(items, filter)
+const mapStateToProps = (state) => ({
+    contacts: getVisibleContacts(getContacts(state), getFilterContacts(state))
 })
 
 
